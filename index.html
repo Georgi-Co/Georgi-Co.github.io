@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,12 +10,91 @@
     <link rel="apple-touch-icon" sizes="180x180" href="apple-icon.png">
     <link rel="icon" type="image/png" sizes="192x192" href="android-icon.png">
     <link rel="icon" type="image/png" sizes="512x512" href="android-icon.png">
-
-    <title>Georgi-Co</title>
+    <link rel="stylesheet" href="style.css">
+    <title>Georgi-Co | Portfolio</title>
 </head>
 <body>
-<img src="background.jpg" class="background-image">
-<h1>GeorgiCo's personal</h1>
-<p>I'm hosted with GitHub Pages.</p>
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <div class="nav-content">
+                <a href="#" class="nav-logo">GeorgiCo</a>
+                <div class="nav-links">
+                    <a href="#about" class="nav-link">About</a>
+                    <a href="#projects" class="nav-link">Projects</a>
+                    <a href="#contact" class="nav-link">Contact</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-background">
+            <img src="background.jpg" alt="Background">
+        </div>
+        <div class="hero-content">
+            <h1 class="hero-title">
+                GeorgiCo's Portfolio
+            </h1>
+            <p class="hero-subtitle">
+                Welcome to my digital space
+            </p>
+            <a href="#contact" class="hero-cta">
+                Get in Touch
+            </a>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about">
+        <div class="about-container">
+            <h2 class="about-title">About Me</h2>
+            <div class="about-content">
+                <p class="about-text">
+                    I'm a passionate developer focused on creating beautiful and functional web experiences.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="projects">
+        <div class="projects-container">
+            <h2 class="projects-title">My Projects</h2>
+            <div class="projects-grid">
+                <!-- Project cards will go here -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="contact-container">
+            <h2 class="contact-title">Get in Touch</h2>
+            <div class="contact-content">
+                <p class="contact-text">
+                    I'm always open to new opportunities and collaborations.
+                </p>
+                <div class="contact-links">
+                    <a href="https://github.com/Georgi-Co" target="_blank" rel="noopener noreferrer" 
+                       class="contact-link">
+                        GitHub
+                    </a>
+                    <a href="https://linkedin.com/in/your-profile" target="_blank" rel="noopener noreferrer"
+                       class="contact-link">
+                        LinkedIn
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <p>&copy; 2024 GeorgiCo. All rights reserved.</p>
+        </div>
+    </footer>
 </body>
 </html>
