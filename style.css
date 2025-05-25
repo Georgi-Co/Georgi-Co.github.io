@@ -1,17 +1,168 @@
-/* Base styles */
-body {
-    background-color: #111827;
-    color: white;
-    min-height: 100vh;
+/*Здесь мы создадим анимацию загрузки в теле*/
+/* Стили для прелоадера */
+.loader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #ffffff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
 }
 
-/* Navigation */
+.loader::before {
+ content: "";
+ width: 60px;
+ height: 60px;
+ border: 5px solid #000000;
+ border-top-color: transparent;
+ border-radius: 50%;
+ animation: spin 1s linear infinite;
+ box-shadow: 0 0 20px rgba(0,0,0,0.5);
+}
+
+
+@keyframes spin {
+ from { transform: rotate(0deg); }
+ to { transform: rotate(360deg); }
+}
+
+
+/* Стили для обёртки контента */
+.wrapper {
+ opacity: 0;
+ animation: bounceFullScreen 4s ease-out;
+ position: relative; /* Убедитесь, что родительский элемент имеет relative */
+ width: 15%;
+ height: 15%;
+ margin-left: 10px;
+}
+
+.full-screen-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+.ball {
+    width: 100px;
+    height: 100px;
+    background: url('Basketball Ball Cartoon.png') no-repeat center;
+    background-size: cover;
+    position: fixed;
+    top: 0;
+    left: 0;
+    animation: bounceFullScreen 20s cubic-bezier(0.25, 0.46, 0.45, 0.94) infinite;
+    opacity: 1;
+    visibility: visible;
+    z-index: 9999;
+    will-change: transform;
+    transform-origin: center center;
+}
+
+@keyframes bounceFullScreen {
+    0% {
+        transform: translate(0, 0) rotate(0deg) scale(1);
+    }
+    5% {
+        transform: translate(calc(100vw - 300px), 50px) rotate(45deg) scale(0.98);
+    }
+    10% {
+        transform: translate(calc(100vw - 200px), 150px) rotate(90deg) scale(0.95);
+    }
+    15% {
+        transform: translate(calc(100vw - 100px), 100px) rotate(135deg) scale(0.98);
+    }
+    20% {
+        transform: translate(calc(100vw - 50px), calc(100vh - 300px)) rotate(180deg) scale(1);
+    }
+    25% {
+        transform: translate(calc(100vw - 100px), calc(100vh - 200px)) rotate(225deg) scale(0.98);
+    }
+    30% {
+        transform: translate(calc(100vw - 150px), calc(100vh - 100px)) rotate(270deg) scale(0.95);
+    }
+    35% {
+        transform: translate(calc(100vw - 200px), calc(100vh - 50px)) rotate(315deg) scale(0.98);
+    }
+    40% {
+        transform: translate(calc(100vw - 250px), calc(100vh - 100px)) rotate(360deg) scale(1);
+    }
+    45% {
+        transform: translate(calc(100vw - 300px), calc(100vh - 150px)) rotate(405deg) scale(0.98);
+    }
+    50% {
+        transform: translate(calc(100vw - 350px), calc(100vh - 200px)) rotate(450deg) scale(0.95);
+    }
+    55% {
+        transform: translate(300px, calc(100vh - 150px)) rotate(495deg) scale(0.98);
+    }
+    60% {
+        transform: translate(250px, calc(100vh - 100px)) rotate(540deg) scale(1);
+    }
+    65% {
+        transform: translate(200px, calc(100vh - 150px)) rotate(585deg) scale(0.98);
+    }
+    70% {
+        transform: translate(150px, calc(100vh - 200px)) rotate(630deg) scale(0.95);
+    }
+    75% {
+        transform: translate(100px, calc(100vh - 250px)) rotate(675deg) scale(0.98);
+    }
+    80% {
+        transform: translate(50px, 200px) rotate(720deg) scale(1);
+    }
+    85% {
+        transform: translate(100px, 150px) rotate(765deg) scale(0.98);
+    }
+    90% {
+        transform: translate(150px, 100px) rotate(810deg) scale(0.95);
+    }
+    95% {
+        transform: translate(100px, 50px) rotate(855deg) scale(0.98);
+    }
+    100% {
+        transform: translate(0, 0) rotate(900deg) scale(1);
+    }
+}
+
+
+.hidden {
+    opacity: 0;
+    transition: opacity 0.5s ease-out;
+    pointer-events: none;
+}
+
+.visible {
+    opacity: 1;
+}
+
+
+
+/* Base styles */
+body {
+    background-color: #ddae8e86;
+    color: rgba(255, 255, 255, 0.788);
+    min-height: 100vh;
+    margin: 0;
+}
+
+/* Navigation (Навигация, верхняя полосочка с локальными ссылками) */
 nav {
     position: fixed;
+    margin: 0 auto;
+    top: 0;
+    left: 0;
     width: 100%;
-    background-color: rgba(31, 41, 55, 0.8);
+    background: linear-gradient(to right, #435a75, rgb(112, 101, 207), #435a75);
     backdrop-filter: blur(4px);
-    z-index: 50;
+    z-index: 10;
 }
 
 .nav-container {
@@ -22,19 +173,55 @@ nav {
 
 .nav-content {
     display: flex;
-    align-items: center;
     justify-content: space-between;
 }
 
+/*Левый верхний угол шапки*/
 .nav-logo {
     font-size: 1.5rem;
     font-weight: bold;
-    color: #60a5fa;
+    color: white; /* Основной цвет ссылок */
+    text-decoration: overline; /* Убираем подчеркивание */
+    
+    /* Добавляем стили для всех состояний */
+    color: white;
+    &:visited {
+        color: white; /* Цвет для посещенных ссылок */
+    }
+    &:hover {
+        color: rgb(221, 246, 248); /* Цвет при наведении */
+        text-shadow: 0 0 15px rgb(255, 191, 151);
+    }
+    &:active {
+        color: #ffffff; /* Цвет при нажатии */
+    }
+
 }
+
 
 .nav-links {
     display: none;
+    font-size: 24px;
+    color: white;
 }
+
+.nav-links a {
+    color: white; /* Основной цвет ссылок */
+    text-decoration: none; /* Убираем подчеркивание */
+    
+    /* Добавляем стили для всех состояний */
+    color: white;
+    &:visited {
+        color: white; /* Цвет для посещенных ссылок */
+    }
+    &:hover {
+        color: #c0c9d4; /* Цвет при наведении */
+    }
+    &:active {
+        color: #c0c9d4; /* Цвет при нажатии */
+    }
+}
+
 
 @media (min-width: 768px) {
     .nav-links {
@@ -48,7 +235,7 @@ nav {
 }
 
 .nav-link:hover {
-    color: #60a5fa;
+    color: #d1e8ff;
 }
 
 /* Hero Section */
@@ -81,11 +268,21 @@ nav {
     text-align: center;
 }
 
+.hero-content-alignment {
+ display: flex;
+ flex-wrap: wrap;
+ justify-content: center;
+ align-items: center;
+ margin-left: 15vh;
+}
+
+
 .hero-title {
     font-size: 3rem;
     font-weight: bold;
+    text-align: center; /* Центрирует текст заголовка */
     margin-bottom: 1.5rem;
-    background: linear-gradient(to right, #60a5fa, #a855f7);
+    background: linear-gradient(to right, #435a75, rgb(233, 114, 59),#435a75, rgb(223, 121, 54), #435a75);
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;
@@ -99,7 +296,7 @@ nav {
 
 .hero-subtitle {
     font-size: 1.25rem;
-    color: #d1d5db;
+    color: #fffffff5;
     margin-bottom: 2rem;
 }
 
@@ -124,7 +321,7 @@ nav {
 /* About Section */
 .about {
     padding: 5rem 0;
-    background-color: #1f2937;
+    background-color: #435979;
 }
 
 .about-container {
@@ -149,6 +346,7 @@ nav {
 .about-text {
     margin-bottom: 1.5rem;
     text-align: center;
+    font-size: 32px;
 }
 
 /* Projects Section */
@@ -160,6 +358,18 @@ nav {
     max-width: 1280px;
     margin: 0 auto;
     padding: 0 1.5rem;
+}
+
+.project-content {
+    max-width: 48rem;
+    margin: 0 auto;
+    color: #2e5a9c;
+}
+
+.project-text {
+    margin-bottom: 1.5rem;
+    text-align: center;
+    font-size: 32px;
 }
 
 .projects-title {
@@ -190,7 +400,7 @@ nav {
 /* Contact Section */
 .contact {
     padding: 5rem 0;
-    background-color: #1f2937;
+    background-color: #4f6b8f;
 }
 
 .contact-container {
@@ -215,12 +425,14 @@ nav {
     color: #d1d5db;
     text-align: center;
     margin-bottom: 2rem;
+    font-size: 32px;
 }
 
 .contact-links {
     display: flex;
     justify-content: center;
     gap: 1.5rem;
+    line-height: 10em;
 }
 
 .contact-link {
@@ -228,14 +440,16 @@ nav {
     transition: color 0.2s;
 }
 
+/* Анимация активной кнопки(Github,LinkedIn) */
 .contact-link:hover {
     color: #60a5fa;
 }
 
 /* Footer */
 footer {
-    background-color: #111827;
+    background-color: #223255;
     padding: 2rem 0;
+    width: 100%;
 }
 
 .footer-content {
