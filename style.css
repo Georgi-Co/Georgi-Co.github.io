@@ -304,6 +304,19 @@ nav {
     .hero-subtitle {
         font-size: 1.5rem;
     }
+
+    body {
+        font-size: 14px;
+    }
+
+    img {
+        width: 10%;
+    }
+
+    .container {
+        max-width: 768px;
+        margin: 0 auto;
+    }
 }
 
 .hero-cta {
